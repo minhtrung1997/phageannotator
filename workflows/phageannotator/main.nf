@@ -100,13 +100,13 @@ workflow PHAGEANNOTATOR {
         }
 
         // create channel from params.reference_virus_fasta
-        ch_reference_virus_fasta_gz = Channel.value([ [ id:'reference_viruses' ], file( params.reference_virus_fasta, checkIfExists:true ) ])
+        ch_reference_virus_fasta_gz = Channel.fromPath([ [ id:'reference_viruses' ], file( params.reference_virus_fasta, checkIfExists:true ) ])
 
         // create channel from params.reference_virus_sketch
         if ( !params.reference_virus_sketch ){
             ch_reference_virus_sketch_msh = null
         } else {
-            ch_reference_virus_sketch_msh = Channel.value( [ [ id:'reference_viruses' ], file( params.reference_virus_sketch, checkIfExists:true ) ] )
+            ch_reference_virus_sketch_msh = Channel.fromPath( [ [ id:'reference_viruses' ], file( params.reference_virus_sketch, checkIfExists:true ) ] )
         }
 
         //
@@ -141,7 +141,7 @@ workflow PHAGEANNOTATOR {
         if ( !params.genomad_db ){
             ch_genomad_db = null
         } else {
-            ch_genomad_db = Channel.value( file( params.genomad_db, checkIfExists:true ) )
+            ch_genomad_db = Channel.fromPath( file( params.genomad_db, checkIfExists:true ) )
         }
 
         // if skip_genomad == false run genomad subworkflow
@@ -175,7 +175,7 @@ workflow PHAGEANNOTATOR {
         if ( !params.checkv_db ){
             ch_checkv_db = null
         } else {
-            ch_checkv_db = Channel.value( file( params.checkv_db, checkIfExists:true ) )
+            ch_checkv_db = Channel.fromPath( file( params.checkv_db, checkIfExists:true ) )
         }
 
         //
@@ -353,7 +353,7 @@ workflow PHAGEANNOTATOR {
         if ( !params.pharokka_db ){
             ch_pharokka_db = null
         } else {
-            ch_pharokka_db = Channel.value( file( params.pharokka_db, checkIfExists:true ) )
+            ch_pharokka_db = Channel.fromPath( file( params.pharokka_db, checkIfExists:true ) )
         }
 
         //
